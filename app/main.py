@@ -4,12 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from skimage import io
 import cv2
-from deeplearning import yolo_predictions  # Ensure this import works
+from .deeplearning import yolo_predictions  # Ensure this import works
 
 app = FastAPI()
 
 # CORS middleware configuration
-origins = ["*"]
+origins = ["http://localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,
