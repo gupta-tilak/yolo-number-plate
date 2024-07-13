@@ -10,6 +10,7 @@ INPUT_HEIGHT = 640
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, 'models', 'best.onnx')
+OCR_MODEL_DIR = os.path.join(BASE_DIR, 'models')
 print(MODEL_PATH)
 
 # Load YOLO model
@@ -17,8 +18,21 @@ net = cv2.dnn.readNetFromONNX(MODEL_PATH)
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
+# Check if model files exist
+model_exists = all(
+    [
+        os.path.isfile(os.path.join(OCR_MODEL_DIR, f))
+        for f in ['craft_mlt_25k.pth', 'english_g2.pth']
+    ]
+)
+
 # Initialize EasyOCR reader
-reader = easyocr.Reader(['en'])
+if model_exists:
+    reader = easyocr.Reader(['en'], model_storage_directory=OCR_MODEL_DIR)
+else:
+    # Download the model if it doesn't exist
+    reader = easyocr.Reader(['en'], model_storage_directory=OCR_MODEL_DIR, download_enabled=True)
+
 
 def apply_histogram_equalization(image):
     """Apply histogram equalization to an image."""
