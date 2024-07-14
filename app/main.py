@@ -34,7 +34,7 @@ def health_check():
 async def index(file: UploadFile = File(...)):
     try:
         # Create a temporary file to store the uploaded image
-        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".jpeg", dir=TEMP_PATH)
+        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg", dir=TEMP_PATH)
         temp_file.close()
 
         # Write the uploaded file content to the temporary file
@@ -48,7 +48,7 @@ async def index(file: UploadFile = File(...)):
         result_img, plate_texts = yolo_predictions(img)
 
         # Encode the resulting image as base64
-        retval, buffer = cv2.imencode('.jpeg', cv2.cvtColor(result_img, cv2.COLOR_RGB2BGR))
+        retval, buffer = cv2.imencode('.jpg', cv2.cvtColor(result_img, cv2.COLOR_RGB2BGR))
         encoded_image = base64.b64encode(buffer).decode('utf-8')
 
         # Construct the response object
