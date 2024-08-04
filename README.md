@@ -25,8 +25,8 @@ You can install the required dependencies using requirements.txt.
 ### Using Uvicorn
 
 You can run the application using Uvicorn with the following command:
-    ```bash
-    uvicorn main:app --host 0.0.0.0 --port 8000 --workers 1
+1.    ```bash
+      uvicorn main:app --host 0.0.0.0 --port 8000 --workers 1
 
 ### Using Docker
 
@@ -53,7 +53,7 @@ We welcome contributions to enhance the functionality and performance of this pr
     ```bash
     git checkout -b feature-branch
 4. **Make your changes:**
-   Implement your feature or bug fix.
+Implement your feature or bug fix.
 5. **Commit your changes:**
    ```bash
    git commit -m 'Add new feature'
@@ -61,6 +61,6 @@ We welcome contributions to enhance the functionality and performance of this pr
    ```bash
    git push origin feature-branch
 7. **Create a pull request:**
-   Go to the repository on GitHub and click the "New Pull Request" button. Provide a clear description of your changes.
+Go to the repository on GitHub and click the "New Pull Request" button. Provide a clear description of your changes.
 
 
